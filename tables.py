@@ -23,19 +23,6 @@ romReference = {
 }
 
 intervals = {
-    "3": {
-        "min": (3, 4),
-        "maj": (4, 3),
-        "dim": (3, 3),
-        "aug": (4, 4)
-    },
-    "7": {
-        "min": (3, 4, 3),
-        "maj": (4, 3, 4),
-        "dom": (4, 3, 3),
-        "dim": (3, 3, 3),
-        "aug": (4, 4, 4)
-    },
     "shorthand": {
         "maj": ("1", "3", "5"),
         "min": ("1", "b3", "5"),
@@ -71,9 +58,9 @@ intervals = {
         "bb7": 9,
         "b7": 10,
         "7": 11,
-        "8": 12,
-        "9": 14,
-
+        "8": 0,
+        "9": 2,
+        "#9": 3
     }
 
 }
@@ -98,6 +85,15 @@ notes = {
         "G#": 8,
         "A#": 10
     },
+    "natural": [
+        "A",
+        "B",
+        "C",
+        "D", 
+        "E", 
+        "F",
+        "G"
+    ],
     "flat": [
         "C",
         "Db",
@@ -129,8 +125,8 @@ notes = {
 }
 
 regexes = {
-    "root": "((IV|V?I{0,3})|(iv|v?i{0,3}))",
-    "quality": "(majmin|maj|min|dom|dim|aug)",
-    "size": "",
-    "whole": "[VvIi]{1,3}([a-z]{3}|.{0})\d{0,2}"
+    "root": r"((IV|V?I{0,3})|(iv|v?i{0,3}))",
+    "quality": r"(majmin|maj|min|dom|dim|aug)",
+    "size": r"",
+    "whole": r"[VvIi]{1,3}([a-z]{3}|.{0})\d{0,2}"
 }

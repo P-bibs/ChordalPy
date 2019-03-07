@@ -6,7 +6,7 @@ def main():
     while(False):
         chord = input("Type a chord")
         chordTuple = StringChordParser.parseChord(chord)
-        chord = Chord(*chordTuple)
+        chord = Chord.Chord(*chordTuple)
 
         print(chord.toString())
         print("\t", end="")
@@ -17,12 +17,23 @@ def main():
 
     while(False):
         chord = input("Type a chord")
-        if verifyChord(chord):
+        if StringChordParser.verifyChord(chord):
             print("Valid")
         else:
             print("Not Valid")
 
-    print(StringChordParser.parseChord("Ab:sus4(b5, #9)/5"))
+    if False:
+        myChords = ["C:sus2/5", "E:7", "A:maj", "D:maj", "E:maj", "F#:min"]
+        for chord in myChords:
+            myString = StringChordParser.parseChord(chord)
+            myChord = Chord.Chord(*myString)
+            print("%s is spelled %s" % (chord, myChord.getSpelling()))
+
+    chord = "C:min(7)"
+    myString = StringChordParser.parseChord(chord)
+    myChord = Chord.Chord(*myString)
+    print("%s is spelled %s" % (chord, myChord.getSpelling()))
+    print("With notes %s" % myChord.getNotes())
         
 
 main()
