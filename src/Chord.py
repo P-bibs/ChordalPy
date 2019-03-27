@@ -2,52 +2,44 @@ import tables
 
 class Chord:
     def __init__(self, root, intervals, bass):
+        # PitchName object
         self.root = root
+        # tuple of Interval object
         self.intervals = intervals
+        # PitchName object
         self.bass = bass
 
     # returns each characteristic of chord concatenated (ie: root + quality + size)
     def toString(self):
-        return self.root + ":" + self.intervals + "/" + self.bass
-
-    # returns 12 item array of booleans representing notes in chord
-    def getNotes(self):
-        noteList = [False for c in range(12)]
-
-        for interval in self.intervals:
-            noteList.append(tables.intervals["intervalToStep"][interval[-1]])
-
-        out = [False for c in range(12)]
-        rootIndex = tables.notes["noteToStep"][self.root]
-        for i in range(rootIndex, rootIndex + len(noteList)):
-            out[i % 12] = noteList[i - rootIndex]
-
-        return out
-
-    # returns letter names of notes in chord starting from root
+        return self.root + ":" + str(self.intervals) + "/" + self.bass
+    
     def getSpelling(self):
-        splitIntervals = []
-        spelling = []
+        notes = [self.root]
+        rootNumeral = tables.notes["naturalToStep"][self.root[0]]-1
 
-        rootIndex = tables.notes["natural"].index(self.root[0])
+        for i in range(1, len(self.intervals)):
+            notes.append(noteFromInterval(self.root, self.intervals[i]))
+    
+        return notes
 
-        splitIntervals = [("", self.intervals[c][0]) if len(self.intervals)==1 else (self.intervals[c][0:-1], self.intervals[c][-1]) for c in range(len(self.intervals))]
+
+def noteFromInterval(root, interval):
+        rootNumeral = tables.notes["naturalToStep"][root[0]]-1
+        natural = tables.notes["stepToNatural"][str(((rootNumeral + interval[0]) % 7))]
+
+        naturalHalfSteps = tables.notes["naturalToHalfStep"][natural]
+        rootHalfSteps = tables.notes["naturalToHalfStep"][root]
+
+        if (naturalHalfSteps - rootHalfSteps)<0:
+            halfStepOffset = interval[1]%12 - (naturalHalfSteps+12 - rootHalfSteps)
+        else:
+            halfStepOffset = interval[1]%12 - (naturalHalfSteps - rootHalfSteps)
+
+        if halfStepOffset == 0:
+                accidental = ""
+        elif halfStepOffset > 0:
+            accidental = "#" * halfStepOffset
+        elif halfStepOffset < 0:
+            accidental = "b" * (-1*halfStepOffset)
         
-
-        for interval in splitIntervals:
-            spelling.append(interval[0] + tables.notes["natural"][(rootIndex + int(interval[1]) - 1) % 7])
-
-
-        return spelling
-
-    def getSpelling2(self):
-        actualStep = []
-        for interval in self.intervals:
-            intervalInt = interval[-1]-1
-            intervalInt -= intervalInt.count("b")
-            intervalInt += intervalInt.count("#")
-            actualStep.append(intervalInt)
-
-        naturalStep = []
-        for interval in self.intervals:
-            ()
+        return natural + accidental
