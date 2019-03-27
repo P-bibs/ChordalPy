@@ -29,3 +29,9 @@ lib/**
 tmp/**
 .python-version
 test.py
+.vscode/**
+pyvenv.cfg
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc
