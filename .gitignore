@@ -31,6 +31,7 @@ tmp/**
 test.py
 .vscode/**
 pyvenv.cfg
+.pylintrc
 
 # Python Tools for Visual Studio (PTVS)
 __pycache__/

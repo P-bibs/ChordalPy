@@ -1,5 +1,5 @@
-import re, tables, Chord
 import functools
+import re, tables, Chord
 
 # takes a chord represented as a string and separates it into 3 components (also expands shorthand)
 def parseChord(stringChord):
