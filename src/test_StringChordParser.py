@@ -22,6 +22,8 @@ def test_ChordParsing():
 
     assert StringChordParser.parseChord("B:dim").getSpelling() == Chord.Chord('B', [(1, 0), (3, 3), (5, 6)], '').getSpelling()
 
+    assert StringChordParser.parseChord("Cb:maj").getSpelling() == Chord.Chord('Cb', [(1, 0), (3, 4), (5, 7)], '').getSpelling()
+
 def test_ChordSpelling():
     assert Chord.Chord("C",[(1,0),(3,4),(5,7)], "").getSpelling() == ["C", "E", "G"]
 
@@ -36,3 +38,12 @@ def test_ChordSpelling():
     assert Chord.Chord("C#",[(1,0),(3,3),(5,6),(7,9)], "").getSpelling() == ["C#", "E", "G", "Bb"]
 
     assert Chord.Chord("C",[(1,0),(3,3),(7,9),(9,13)], "").getSpelling() == ["C", "Eb", "Bbb", "Db"]
+
+    assert Chord.Chord("Cb",[(1,0),(3,4),(5,7)], "").getSpelling() == ["Cb", "Eb", "Gb"]
+
+def test_ChordNoteArray():
+    assert Chord.Chord("C",[(1,0),(3,4),(5,7)], "").getNoteArray() == [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]
+
+    assert Chord.Chord("C",[(1,0),(3,3),(7,9),(9,13)], "").getNoteArray() == [1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
+
+    
