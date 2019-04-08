@@ -6,11 +6,6 @@ def parseChord(stringChord):
 
     root, intervals, bass = "", "", ""
 
-    print("Parsing chord %s" % stringChord)
-    if "11" in stringChord or "13" in stringChord or "15" in stringChord:
-        print("Sorry, multidigit extension numerals aren't supported")
-        return
-
     # split into root, middle section, and bass
     if ":" in stringChord and "/" in stringChord:
         root, middle, bass = stringChord.replace(":", "_").replace("/", "_").split("_")
