@@ -1,5 +1,5 @@
 import functools
-import re, tables, Chord
+import re, Tables, Chord
 
 # takes a chord represented as a string and separates it into 3 components (also expands shorthand)
 def parseChord(stringChord):
@@ -28,7 +28,7 @@ def middleToIntervals(stringRep):
         modifiers = modifiers.replace(")","")
         modifiers = modifiers.split(",")
 
-        intervals = tables.intervals["shorthandToIntervals"][shorthand]
+        intervals = Tables.intervals["shorthandToIntervals"][shorthand]
 
         intervals = list(map(stringIntervalToTuple, intervals))
         modifiers = list(map(stringIntervalToTuple, modifiers))
@@ -37,14 +37,14 @@ def middleToIntervals(stringRep):
 
     # just intervals (so it starts with "(" )
     elif stringRep[0] == "(":
-        intervals = stringRep[1:-2]
+        intervals = stringRep[1:-1]
         intervals = intervals.split(",")
         intervals = list(map(stringIntervalToTuple, intervals))
 
     # Just shorthand so it has no "("
     elif "(" not in stringRep:
         shorthand = stringRep
-        intervals = tables.intervals["shorthandToIntervals"][shorthand]
+        intervals = Tables.intervals["shorthandToIntervals"][shorthand]
         intervals = list(map(stringIntervalToTuple, intervals))
 
     return intervals
@@ -72,6 +72,6 @@ def stringIntervalToTuple(stringInterval):
     if stringInterval[0] == "*":
         interval = (int(stringInterval[-1]), -1)
     else:
-        interval = tables.intervals["intervalToTuple"][stringInterval]
+        interval = Tables.intervals["intervalToTuple"][stringInterval]
     
     return interval
