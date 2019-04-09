@@ -1,4 +1,4 @@
-import tables
+import Tables
 
 class Chord:
     def __init__(self, root, intervals, bass):
@@ -28,23 +28,23 @@ class Chord:
         return notes
 
     def getNoteArray(self):
-        noteArray = [False for c in range(12)]
-        rootNumeral = tables.notes["naturalToHalfStep"][self.root]
-        noteArray[rootNumeral] = True
+        noteArray = [0 for c in range(12)]
+        rootNumeral = Tables.notes["naturalToHalfStep"][self.root]
+        noteArray[rootNumeral % 12] = 1
 
         for i in range(len(self.intervals)):
             halfStep = self.intervals[i][1]
-            noteArray[(rootNumeral+halfStep) % 12] = True
+            noteArray[(rootNumeral+halfStep) % 12] = 1
 
         return noteArray
-    
+
     def noteFromInterval(self, interval):
         # -1 is added because an interval of a first corresponds to the root pitch
-        rootNumeral = tables.notes["naturalToStep"][self.root[0]]-1
-        natural = tables.notes["stepToNatural"][str(((rootNumeral + interval[0]) % 7))]
+        rootNumeral = Tables.notes["naturalToStep"][self.root[0]]-1
+        natural = Tables.notes["stepToNatural"][str(((rootNumeral + interval[0]) % 7))]
 
-        naturalHalfSteps = tables.notes["naturalToHalfStep"][natural]
-        rootHalfSteps = tables.notes["naturalToHalfStep"][self.root]
+        naturalHalfSteps = Tables.notes["naturalToHalfStep"][natural]
+        rootHalfSteps = Tables.notes["naturalToHalfStep"][self.root]
 
         # This is necessary for it all to work. Don't ask why
         if self.root=="Cb":
