@@ -25,10 +25,11 @@ if __name__ == "__main__":
         # Start by transposing the file.
         # Returns a list of transposed chords
         try:
-            transposedList = Transposers.transposeRealBookFile(path + "/" + file)
+            transposedList = Transposers.transposeRealBookFile(PATH + "/" + file)
         except:
             errorFiles+=1
             print("trouble with file " + file)
+            continue
 
         # Then read in each chord and convert to note Array
         for chord in transposedList:
