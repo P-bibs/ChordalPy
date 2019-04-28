@@ -1,3 +1,4 @@
+import functools
 import Tables
 
 class Chord:
@@ -37,6 +38,15 @@ class Chord:
             noteArray[(rootNumeral+halfStep) % 12] = 1
 
         return noteArray
+
+    def getPseudoHash(self):
+        noteArray = self.getNoteArray()
+        pseudoHash = ''
+        for i in range(0, 12, 3):
+            seg = functools.reduce((lambda a,b : str(a)+str(b)), noteArray[i:i+3])
+            pseudoHash += str(chr(int(seg, 2) + 97))
+        
+        return pseudoHash
 
     def noteFromInterval(self, interval):
         # -1 is added because an interval of a first corresponds to the root pitch
