@@ -1,55 +1,57 @@
 import functools
 import re, Tables, Chord
 
-# takes a chord represented as a string and separates it into 3 components (also expands shorthand)
-def parseChord(stringChord):
+def parse_chord(string_chord):
+    """Takes a string representation of a chord and returns a chord object."""
 
     root, intervals, bass = "", "", ""
 
     # split into root, middle section, and bass
-    if ":" in stringChord and "/" in stringChord:
-        root, middle, bass = stringChord.replace(":", "_").replace("/", "_").split("_")
-    elif ":" in stringChord:
-        root, middle = stringChord.split(":")
-    elif "/" in stringChord:
-        root, bass = stringChord.split("/")
+    if ":" in string_chord and "/" in string_chord:
+        root, middle, bass = string_chord.replace(":", "_").replace("/", "_").split("_")
+    elif ":" in string_chord:
+        root, middle = string_chord.split(":")
+    elif "/" in string_chord:
+        root, bass = string_chord.split("/")
     else:
-        root = stringChord
+        root = string_chord
 
-    intervals = middleToIntervals(middle)
+    intervals = _middle_to_intervals(middle)
 
     return Chord.Chord(root, intervals, bass)
 
-# Convert String Intervals to tuple intervals
-def middleToIntervals(stringRep):
+def _middle_to_intervals(string_rep):
+    """Converts the middle portion of a string chord (intervals) to a tuple."""
+
     # shorthand and then intervals (has a '(' but doesn't start with it)
-    if stringRep[0] != "(" and "(" in stringRep:
-        shorthand, modifiers = stringRep.split("(")
+    if string_rep[0] != "(" and "(" in string_rep:
+        shorthand, modifiers = string_rep.split("(")
         modifiers = modifiers.replace(")","")
         modifiers = modifiers.split(",")
 
         intervals = Tables.intervals["shorthandToIntervals"][shorthand]
 
-        intervals = list(map(stringIntervalToTuple, intervals))
-        modifiers = list(map(stringIntervalToTuple, modifiers))
-        
-        intervals = applyModifiers(intervals, modifiers)
+        intervals = list(map(_string_interval_to_tuple, intervals))
+        modifiers = list(map(_string_interval_to_tuple, modifiers))
+
+        intervals = _apply_modifiers(intervals, modifiers)
 
     # just intervals (so it starts with "(" )
-    elif stringRep[0] == "(":
-        intervals = stringRep[1:-1]
+    elif string_rep[0] == "(":
+        intervals = string_rep[1:-1]
         intervals = intervals.split(",")
-        intervals = list(map(stringIntervalToTuple, intervals))
+        intervals = list(map(_string_interval_to_tuple, intervals))
 
     # Just shorthand so it has no "("
-    elif "(" not in stringRep:
-        shorthand = stringRep
+    elif "(" not in string_rep:
+        shorthand = string_rep
         intervals = Tables.intervals["shorthandToIntervals"][shorthand]
-        intervals = list(map(stringIntervalToTuple, intervals))
+        intervals = list(map(_string_interval_to_tuple, intervals))
 
     return intervals
 
-def applyModifiers(intervals, modifiers):
+def _apply_modifiers(intervals, modifiers):
+    """ Given a set of tuple intervals and a set of modifiers, adjusts the intervals accordingly"""
     # Replace intervals that are flatted or sharped
     for i in range(len(intervals)-1, -1, -1):
         for j in range(len(modifiers)-1, -1, -1):
@@ -62,16 +64,17 @@ def applyModifiers(intervals, modifiers):
                     intervals[i] = modifiers[j]
                     modifiers.pop(i)
                     break
-    
+
     for modifier in modifiers:
         intervals.append(modifier)
 
     return intervals
 
-def stringIntervalToTuple(stringInterval):
+def _string_interval_to_tuple(stringInterval):
+    """Converts a string interval to a tuple interval"""
     if stringInterval[0] == "*":
         interval = (int(stringInterval[-1]), -1)
     else:
         interval = Tables.intervals["intervalToTuple"][stringInterval]
-    
+
     return interval

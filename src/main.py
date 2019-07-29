@@ -35,7 +35,7 @@ def makeReverseDictionary(inputPath, outputPath):
         for chord in transposedList:
             totalLines+=1
             try:
-                key = str(StringChordParser.parseChord(chord).getPseudoHash())
+                key = str(StringChordParser.parse_chord(chord).get_pseudo_hash())
                 value = chord
                 if key in outDict and value not in outDict[key]:
                     outDict[key] = outDict[key] + [value]
