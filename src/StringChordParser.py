@@ -1,6 +1,7 @@
 import functools
 import re, Tables, Chord
 
+
 def parse_chord(string_chord):
     """Takes a string representation of a chord and returns a chord object."""
 
@@ -19,6 +20,7 @@ def parse_chord(string_chord):
     intervals = _middle_to_intervals(middle)
 
     return Chord.Chord(root, intervals, bass)
+
 
 def _middle_to_intervals(string_rep):
     """Converts the middle portion of a string chord (intervals) to a tuple."""
@@ -50,6 +52,7 @@ def _middle_to_intervals(string_rep):
 
     return intervals
 
+
 def _apply_modifiers(intervals, modifiers):
     """ Given a set of tuple intervals and a set of modifiers, adjusts the intervals accordingly"""
     # Replace intervals that are flatted or sharped
@@ -70,11 +73,12 @@ def _apply_modifiers(intervals, modifiers):
 
     return intervals
 
-def _string_interval_to_tuple(stringInterval):
+
+def _string_interval_to_tuple(string_interval):
     """Converts a string interval to a tuple interval"""
-    if stringInterval[0] == "*":
-        interval = (int(stringInterval[-1]), -1)
+    if string_interval[0] == "*":
+        interval = (int(string_interval[-1]), -1)
     else:
-        interval = Tables.intervals["intervalToTuple"][stringInterval]
+        interval = Tables.intervals["intervalToTuple"][string_interval]
 
     return interval
