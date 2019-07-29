@@ -1,5 +1,8 @@
-import os, traceback, json
-import Chord, Tables, StringChordParser, Transposers
+#!/usr/bin/env python3
+
+import sys, os, traceback, json
+import PyChord
+from PyChord import Transposers
 
 
 INPUT_PATH = "/Users/paulbiberstein/Desktop/Datasets/jazz_xlab"
@@ -35,7 +38,7 @@ def makeReverseDictionary(inputPath, outputPath):
         for chord in transposedList:
             totalLines+=1
             try:
-                key = str(StringChordParser.parse_chord(chord).get_pseudo_hash())
+                key = str(PyChord.parse_chord(chord).get_pseudo_hash())
                 value = chord
                 if key in outDict and value not in outDict[key]:
                     outDict[key] = outDict[key] + [value]
@@ -57,4 +60,14 @@ def makeReverseDictionary(inputPath, outputPath):
 
 # Process files in a directory in Real Book format and return note arrays
 if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("""
+        Construct a hash:chord mapping for all unique chords in a directory
+
+        Usage - ./UniqueChordMapping source-directory output-file
+        """)
+        sys.exit(1)
+
+    INPUT_PATH  = sys.argv[1]
+    OUTPUT_PATH = sys.argv[2]
     makeReverseDictionary(INPUT_PATH, OUTPUT_PATH)
