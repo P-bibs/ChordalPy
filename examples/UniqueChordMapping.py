@@ -5,9 +5,6 @@ import PyChord
 from PyChord import Transposers
 
 
-INPUT_PATH = "/Users/paulbiberstein/Desktop/Datasets/jazz_xlab"
-OUTPUT_PATH = "/Users/paulbiberstein/Desktop/hashedReverseDict.json"
-
 def makeReverseDictionary(inputPath, outputPath):
     directory = os.listdir(inputPath)
 
