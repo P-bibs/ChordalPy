@@ -1,5 +1,6 @@
 import functools
-import re, Tables, Chord
+import re
+from PyChord import Tables, Chord
 
 
 def parse_chord(string_chord):
@@ -19,7 +20,7 @@ def parse_chord(string_chord):
 
     intervals = _middle_to_intervals(middle)
 
-    return Chord.Chord(root, intervals, bass)
+    return Chord(root, intervals, bass)
 
 
 def _middle_to_intervals(string_rep):

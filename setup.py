@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="PyChordParser",
+    name="PyChord",
     version="0.1.0",
     author="P-bibs",
     author_email="author@example.com",

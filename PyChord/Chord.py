@@ -1,5 +1,5 @@
 import functools
-import Tables
+from PyChord import Tables
 
 
 class Chord:
