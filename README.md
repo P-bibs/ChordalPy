@@ -19,3 +19,20 @@ my_chord = PyChordParser.parse_chord(C:maj)
 spelling = my_chord.get_spelling()
 print("C:maj has notes %s" % spelling)
 ```
+
+Instantiate a chord directly
+
+```python
+import PyChordParser
+
+# C major in first inversion (C:maj/3)
+root = "C"
+intervals = [(1, 0), (3, 4), (5, 7)]
+bass = "E"
+
+my_chord = PyChordParser.Chord(root, intervals, bass)
+```
+
+## Also See
+
+[Chordgen.com](paulbiberstein.me/chordgen) - A web tool that uses machine learning to generate chord progressions. The machine learning model ([found here](https://github.com/P-bibs/PyChordGen)) was trained on data created with this library.
