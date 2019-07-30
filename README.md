@@ -102,6 +102,8 @@ print(my_chord.note_from_interval([5, 8]))
 
 ## See Also
 ### Projects
-[Chordgen.com](paulbiberstein.me/chordgen) - A web tool that uses machine learning to generate chord progressions. The machine learning model ([found here](https://github.com/P-bibs/PyChordGen)) was trained on data created with this library.
+[Chordgen.com](paulbiberstein.me/chordgen) - A web tool that uses machine learning to generate chord progressions. [The machine learning model](https://github.com/P-bibs/PyChordGen) was trained on data created with this library.
 ### Datasets
 A non-exhaustive list of datasets that use a format parsable by this library:
+* [Isophonics](http://isophonics.net/datasets)
+* [Real Book](https://github.com/keunwoochoi/lstm_real_book/blob/master/more_data_to_play_with/jazz_xlab.zip)
