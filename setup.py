@@ -11,7 +11,7 @@ setuptools.setup(
     description="Parse and manipulate musical chords",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/P-bibs/ChordalPyParser",
+    url="https://github.com/P-bibs/ChordalPy",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
