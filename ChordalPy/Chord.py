@@ -1,5 +1,5 @@
 import functools
-from PyChord import Tables
+from ChordalPy import Tables
 
 
 class Chord:

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import sys, os, traceback, json
-import PyChord
-from PyChord import Transposers
+import ChordalPy
+from ChordalPy import Transposers
 
 
 def makeReverseDictionary(inputPath, outputPath):
@@ -35,7 +35,7 @@ def makeReverseDictionary(inputPath, outputPath):
         for chord in transposedList:
             totalLines+=1
             try:
-                key = str(PyChord.parse_chord(chord).get_pseudo_hash())
+                key = str(ChordalPy.parse_chord(chord).get_pseudo_hash())
                 value = chord
                 if key in outDict and value not in outDict[key]:
                     outDict[key] = outDict[key] + [value]

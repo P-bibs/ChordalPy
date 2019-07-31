@@ -1,6 +1,6 @@
 import functools
 import re
-from PyChord import Tables, Chord
+from ChordalPy import Tables, Chord
 
 
 def parse_chord(string_chord):

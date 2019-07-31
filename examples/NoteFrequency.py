@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-import PyChord
+import ChordalPy
 
 
 def NoteFrequency(input_file):
@@ -15,7 +15,7 @@ def NoteFrequency(input_file):
     # Parse each chord
     chords = []
     for chord in input_chords:
-        chords.append(PyChord.parse_chord(chord))
+        chords.append(ChordalPy.parse_chord(chord))
 
     note_frequencies = {
         "Cb": 0, "C": 0, "C#": 0,

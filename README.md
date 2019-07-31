@@ -1,11 +1,11 @@
-# PyChord
+# ChordalPy
 
 A simple python library to ingest and manipulate musical chords stored in plaintext format according to [Christopher Harte's 2010 thesis](https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/534/HARTETowardsAutomatic2010.pdf?sequence=1).
 
 ## Installation
 
 ```bash
-python -m pip install PyChord
+python -m pip install ChordalPy
 ```
 
 ## The format
@@ -48,9 +48,9 @@ Using this method you can see how you would distiniguish between two enharmonic 
 Parse a chord and print its members
 
 ```python
-import PyChord
+import ChordalPy
 
-my_chord = PyChord.parse_chord("C:maj")
+my_chord = ChordalPy.parse_chord("C:maj")
 spelling = my_chord.get_spelling()
 print("C:maj has notes %s" % spelling)
 ```
@@ -58,14 +58,14 @@ print("C:maj has notes %s" % spelling)
 Instantiate a chord directly
 
 ```python
-import PyChord
+import ChordalPy
 
 # C major in first inversion (C:maj/3)
 root = "C"
 intervals = [(1, 0), (3, 4), (5, 7)]
 bass = "E"
 
-my_chord = PyChord.Chord(root, intervals, bass)
+my_chord = ChordalPy.Chord(root, intervals, bass)
 ```
 
 ### `Chord` Class
@@ -102,7 +102,7 @@ print(my_chord.note_from_interval([5, 8]))
 
 ## See Also
 ### Projects
-[Chordgen.com](paulbiberstein.me/chordgen) - A web tool that uses machine learning to generate chord progressions. [The machine learning model](https://github.com/P-bibs/PyChordGen) was trained on data created with this library.
+[Chordgen.com](paulbiberstein.me/chordgen) - A web tool that uses machine learning to generate chord progressions. [The machine learning model](https://github.com/P-bibs/ChordalPyGen) was trained on data created with this library.
 ### Datasets
 A non-exhaustive list of datasets that use a format parsable by this library:
 * [Isophonics](http://isophonics.net/datasets)
