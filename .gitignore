@@ -37,3 +37,6 @@ pyvenv.cfg
 __pycache__/
 *.pyc
 temp*
+dist
+build
+*.egg-info
