@@ -37,7 +37,7 @@ The bass is an interval degree (any digit 1-9) along with 0 or more modifiers (`
 
 ## A note on intervals
 
-There is an interesting quick to musical intervals that means they cannot be entirely expressed with only one digit. Rather, they requrie a tuple of two integers.
+There is an interesting quirk to musical intervals that means they cannot be entirely expressed with only one digit. Rather, they requrie a tuple of two integers.
 
 When looking through the source of this library, you will often find intervals notated as such. The first integer represents the number of letter names between the notes (for instance, in the interval from `C` to `G` the first integer would be `5`) and the second integer is the number of half steps (so in the interval from `C` to `G` the second integer would be `7`).
 
@@ -102,7 +102,7 @@ print(my_chord.note_from_interval([5, 8]))
 
 ## See Also
 ### Projects
-[Chordgen.com](paulbiberstein.me/chordgen) - A web tool that uses machine learning to generate chord progressions. [The machine learning model](https://github.com/P-bibs/ChordalPyGen) was trained on data created with this library.
+[Chordgen.com](https://chordgen.paulbiberstein.me/) - A web tool that uses machine learning to generate chord progressions. [The machine learning model](https://github.com/P-bibs/ChordalPyGen) was trained on data created with this library.
 ### Datasets
 A non-exhaustive list of datasets that use a format parsable by this library:
 * [Isophonics](http://isophonics.net/datasets)
